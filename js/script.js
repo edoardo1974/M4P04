@@ -1,6 +1,9 @@
+var imagens = [];
+
+
 async function loadImages() {
             const resposta = await fetch('https://jsonplaceholder.typicode.com/photos?_limit=20');
-            const imagens = await resposta.json();
+            imagens = await resposta.json();
 
             const container = document.getElementById('todoTableBody');
 
@@ -39,6 +42,9 @@ async function apagarLinha(button) {
         if (response.ok) {
             console.log(`Album con ID ${imageId} eliminato con successo dall'API`);
             console.log('Codice di risposta:', response.status);
+
+            // Rimuovi l'oggetto dall'array imagens
+        imagens = imagens.filter(imagem => imagem.id != imageId);
             
             // Rimuovi la riga dalla vista solo se l'eliminazione API è riuscita
             row.remove();
@@ -47,4 +53,48 @@ async function apagarLinha(button) {
             console.error('Codice di risposta:', response.status);
         }
      
+}
+
+async function stampaAPI() {
+    imagens.forEach(imagem => {
+        console.log(`ID: ${imagem.id}, Title: ${imagem.title}, URL: ${imagem.url}`);
+            });
+}
+
+
+async function aggiungiAlbum() {
+    const nuovoAlbum = {
+        albumId: 1,
+        title: "Edoardo Mozzato",
+        url: "https://cursos.com/wp-content/uploads/2021/04/academia-tokio-school.jpg",
+        thumbnailUrl: null
+    };
+    
+    try {
+        // Richiesta POST all'API
+        const response = await fetch('https://jsonplaceholder.typicode.com/photos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuovoAlbum)
+        });
+        
+        if (response.ok) {
+            const albumCreato = await response.json();
+            console.log('Album aggiunto con successo all\'API:');
+            console.log('Dati inviati:', nuovoAlbum);
+            console.log('Risposta API:', albumCreato);
+            console.log('Codice di risposta:', response.status);
+            
+            // OPZIONALE: Aggiungere anche all'array locale
+            // imagens.push(albumCreato);
+            
+        } else {
+            console.error('Errore nell\'aggiunta dell\'album');
+            console.error('Codice di risposta:', response.status);
+        }
+    } catch (error) {
+        console.error('Errore nella richiesta:', error);
+    }
 }
