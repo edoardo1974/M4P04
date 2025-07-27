@@ -2,8 +2,8 @@ var imagens = [];
 
 
 async function loadImages() {
-            const resposta = await fetch('https://jsonplaceholder.typicode.com/photos?_limit=20');
-            imagens = await resposta.json();
+            const db = await fetch('http://localhost:3000/albums?_limit=20');
+            imagens = await db.json();
 
             const container = document.getElementById('todoTableBody');
 
@@ -34,7 +34,11 @@ async function apagarLinha(button) {
     
     
         // Richiesta DELETE all'API
-        const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${imageId}`, {
+        //const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${imageId}`, {
+        //    method: 'DELETE'
+        //});
+
+        const response = await fetch(`http://localhost:3000/albums/${imageId}`, {
             method: 'DELETE'
         });
         
@@ -62,7 +66,7 @@ async function stampaAPI() {
 }
 
 
-async function aggiungiAlbum() {
+async function loadImageswithbutton() {
     const nuovoAlbum = {
         albumId: 1,
         title: "Edoardo Mozzato",
@@ -72,7 +76,7 @@ async function aggiungiAlbum() {
     
     try {
         // Richiesta POST all'API
-        const response = await fetch('https://jsonplaceholder.typicode.com/photos', {
+        const response = await fetch('http://localhost:3000/albums', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
