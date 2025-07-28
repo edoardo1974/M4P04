@@ -8,6 +8,11 @@
 </head>
 <body>
 
+    <!--
+        This HTML snippet defines a table structure for displaying album information.
+        - The table body (<tbody>) has an id of "todoTableBody", intended for dynamic population of album rows via JavaScript.
+        - The "Apagar" column is likely used for delete buttons to remove albums from the list.
+    -->
     <table>
         <thead>
             <tr>
@@ -23,10 +28,14 @@
 
     <div> <br></div>
 
+    <!-- 
+        Button to trigger the loading of images when clicked.
+    -->
     <button id="loadImagesButton" onclick="loadImageswithbutton()">Carregar Dados</button>
 
-    <button onclick="stampaAPI()">Stampa API</button>
-
+    <!--
+        This script tag includes the external JavaScript file "script.js" located in the parent directory's "js" folder.
+    -->
     <script src="..\js\script.js"></script>
     
 </body>

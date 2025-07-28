@@ -23,6 +23,9 @@ th {
     background-color: #f4f4f4;
 }
 
+/* 
+    Styles for <button> elements
+*/
  button {
             background-color: #4CAF50;
             color: white;
@@ -30,6 +33,9 @@ th {
             margin-bottom: 10px;
         }
 
+/* 
+    Styles for the button with ID 'loadImagesButton'
+*/
 #loadImagesButton {
     background-color: #4CAF50;
     color: white;
@@ -39,6 +45,9 @@ th {
     text-size-adjust: 16px;
 }
 
+/* 
+    Styles the #loadImagesButton element when hovered.
+*/
 #loadImagesButton:hover {
     background-color: #45a049;
 }
